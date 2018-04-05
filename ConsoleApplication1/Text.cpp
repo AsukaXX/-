@@ -63,9 +63,9 @@ string make_plural(int size, string str1, string str2) {
 }
 
 ostream& print(ostream& os, const QueryResult& qr) {
-	os << qr.sought << "occurs" << qr.lines->size() << " " << make_plural(qr.lines->size(), "time", "s") << endl;
+	os << qr.sought << " occurs " << qr.lines->size() << " " << make_plural(qr.lines->size(), "time", "s") << endl;
 	for (auto num : *qr.lines)
-		os << "/t(line" << num + 1 << ") " << *(qr.file->begin() + num) << endl;
+		os << "\t(line" << num + 1 << ") " << *(qr.file->begin() + num) << endl;
 	return os;
 }
 
@@ -81,7 +81,7 @@ void runQueries(ifstream &infile) {
 
 int main() {
 	ifstream fs;
-	fs >> "t1.txt";
+	fs.open("t1.txt");
 	runQueries(fs);
 	return 0;
 }
